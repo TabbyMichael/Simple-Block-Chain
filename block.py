@@ -17,7 +17,9 @@ class Block:
     def mine_block(self, difficulty):
         """Simulate mining by finding a hash with the specified number of leading zeros."""
         nonce = 0
-        self.hash = self.calculate_hash()
-        while not self.hash.startswith('0' * difficulty):
-            nonce += 1
+        while True:
             self.hash = self.calculate_hash()
+            if self.hash.startswith('0' * difficulty):
+                print(f"Block mined with nonce: {nonce}, Hash: {self.hash}")  # Log the mining process
+                break
+            nonce += 1
